@@ -1,1655 +1,207 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <link rel="shortcut icon" href="./assets/images/favicons/favicon.ico" type="image/x-icon">
-  <title>Vaibhava - Perceptions - 2K25</title>
-  <!-- reference links -->
-  <link rel="stylesheet" href="./css/main.css">
-  <link rel="stylesheet" href="./css/banner.css">
-  <link rel="stylesheet" href="./css/event_slider.css">
-  <link rel="stylesheet" href="./css/mediaqueries.css">
-  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.14.0/css/all.css" />
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vaibhava 2k25 Loading</title>
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #1a1a1a;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: white;
+            padding: 20px;
+        }
+
+        /* Loader Container - Responsive Base */
+        .loader-container {
+            text-align: center;
+            width: 90%;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        /* Spinner - Responsive Sizes */
+        .spinner {
+            width: clamp(40px, 8vw, 60px);
+            height: clamp(40px, 8vw, 60px);
+            border: clamp(3px, 0.8vw, 5px) solid #f3f3f3;
+            border-top: clamp(3px, 0.8vw, 5px) solid #3498db;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto clamp(15px, 4vw, 20px);
+        }
+
+        /* Progress Bar - Responsive Width */
+        .progress-bar {
+            width: 100%;
+            height: clamp(3px, 1vw, 4px);
+            background-color: #2c2c2c;
+            border-radius: clamp(2px, 0.5vw, 4px);
+            overflow: hidden;
+            margin: clamp(15px, 4vw, 20px) auto;
+        }
+
+        .progress {
+            width: 0%;
+            height: 100%;
+            background-color: #3498db;
+            transition: width 0.5s ease-in-out;
+        }
+
+        /* Text Elements - Responsive Typography */
+        .loading-text {
+            font-size: clamp(16px, 4vw, 18px);
+            margin-bottom: clamp(8px, 2vw, 10px);
+            letter-spacing: 0.5px;
+        }
+
+        .percentage {
+            font-size: clamp(12px, 3.5vw, 14px);
+            color: #888;
+            margin: clamp(5px, 1.5vw, 8px) 0;
+        }
+
+        .redirect-text {
+            font-size: clamp(60px, 3.5vw, 14px);
+            color: #3498db;
+            margin-top: clamp(25px, 4vw, 20px);
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        /* Animations */
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .fade-out {
+            animation: fadeOut 1s forwards;
+        }
+
+        @keyframes fadeOut {
+            from { opacity: 1; }
+            to { opacity: 0; }
+        }
+
+        /* Media Queries for Fine-tuning */
+        @media screen and (max-width: 480px) {
+            .loader-container {
+                width: 95%;
+            }
+        }
+
+        @media screen and (min-width: 1200px) {
+            .loader-container {
+                max-width: 450px;
+            }
+        }
+
+        /* Dark Mode Support */
+        @media (prefers-color-scheme: light) {
+            body {
+                background-color: #f5f5f5;
+                color: #333;
+            }
+
+            .spinner {
+                border-color: #ddd;
+                border-top-color: #3498db;
+            }
+
+            .progress-bar {
+                background-color: #e0e0e0;
+            }
+
+            .percentage {
+                color: #666;
+            }
+        }
+
+        /* High Contrast Mode Support */
+        @media (prefers-contrast: high) {
+            .progress-bar {
+                border: 1px solid #fff;
+            }
+
+            .loading-text, .percentage {
+                text-shadow: 1px 1px 0 #000;
+            }
+        }
+
+        /* Reduced Motion Support */
+        @media (prefers-reduced-motion: reduce) {
+            .spinner {
+                animation: none;
+                border: 4px solid #3498db;
+            }
+
+            .progress {
+                transition: none;
+            }
+        }
+    </style>
 </head>
-
 <body>
-
-  <!-- Overlay -->
-  <div class="overlay" id="overlay" data-aos="fade-down"></div>
-
-  <!-- Popup Ad Banner -->
-  <div class="ad-popup" id="adPopup">
-      <div class="ad-content">
-          <button class="close1-btn" onclick="closeAd()">&times;</button>
-          
-          <!-- Navigation Buttons -->
-          <button class="nav-btn prev-btn" onclick="changeSlide(-1)">&#10094;</button>
-          <button class="nav-btn next-btn" onclick="changeSlide(1)">&#10095;</button>
-
-          <!-- Carousel Container -->
-          <div class="carousel" id="adCarousel">
-              <!-- Ad slides will be inserted here by JavaScript -->
-          </div>
-
-          <!-- Navigation Dots -->
-          <div class="dots-container" id="dotsContainer"></div>
-      </div>
-  </div>
-
-  <!-- home section -->
-  <div id="home" class="bg home">
-    <nav>
-      <div class="nav-container">
-        <div class="logo-container start">
-          <img src="./assets/logos/ramaiah_logo1.png" alt="AITAM">
+    <div class="loader-container">
+        <div class="spinner"></div>
+        <div class="loading-text">Loading...</div>
+        <div class="progress-bar">
+            <div class="progress"></div>
         </div>
-        <ul class="link-container">
-          <li><a href="./index.html">HOME</a></li>
-          <li><a href="bout.html">TEAM</a></li>
-          <li><a href="#event">EVENTS</a></li>
-          <li><a href="./contactus.html">CONTACT US</a></li>
-        </ul>
-        <div class="hamburger">
-          <i class="fas fa-bars"></i>
-        </div>
-        <div class="logo-container end">
-          <img src="./assets/logos/perceptionslogo.png" alt="End Logo">
-        </div>
-      </div>
-      <div class="dropdown">
-        <div class="close-container">
-          <button class="close-btn">X</button>
-        </div>
-        <ul class="dropdown-links">
-          <li><a href="./index.html">HOME</a></li>
-          <li><a href="bout.html">TEAM</a></li>
-          <li><a href="#event">EVENTS</a></li>
-          <li><a href="./contactus.html">CONTACT US</a></li>
-        </ul>
-      </div>
-    </nav>
-
-    <div class="main">
-      <div class="main-img">
-        <img src="./assets/images/VAIBHAVA-TBG-LOGO.png" alt="" srcset="">
-      </div>
-      <div class="main-content">
-        <h2>Welcome To</h2>
-        <div class="name-display">
-          <h1 id="name-display" class="fade"></h1>
-        </div>
-        <p>National Level Management Fest</p>
-        <p><span>4th and 5th February</span></p>
-      </div>
+        <div class="percentage">0%</div>
+        <div class="redirect-text">vaibhava 2k25 Loading...........</div>
     </div>
 
-    <div class="scroll">
-      <div class="scrolldown"></div>
-      <p>Scroll Down</p>
-    </div>
-  </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const loaderContainer = document.querySelector('.loader-container');
+            const progress = document.querySelector('.progress');
+            const percentage = document.querySelector('.percentage');
+            const redirectText = document.querySelector('.redirect-text');
+            let loadingProgress = 0;
 
-  <!-- about carousel event details -->
-  <div class="text-slider-wrapper">
-    <div class="content-slider">
-        <div class="slider-item current">
-            <h2 class="slider-heading">About Vaibhava</h2>
-            <p class="slider-text">VAIBHAVA blends the wisdom of ancient dynasties with the challenges of modern management. Each event brings
-              history to life, showcasing strategies, innovation, and resilience rooted in the past but vital for today.
-              Join us to celebrate timeless lessons in leadership, adaptability, and vision that shape the future of
-              management.</p>
-        </div>
-        <div class="slider-item">
-            <h2 class="slider-heading">Perceptions</h2>
-            <p class="slider-text">Perception is an annual management fest organized by students of the RIM. Students manage the event end-to-end. From conceptualizing & planning to execution, students are at the forefront of this gathering. Every aspect is meticulously planned, including. inviting sponsors, managing finances, advertising and marketing the event, and soliciting participation from other institutions. The event stretches for two days and displays on excellent combination of talent and creativity. Students from various areas of management brainstorm and conceive unique event ideas which can showcase student's knowledge and competence and help them enhance their social skills.</p>
-        </div>
-        <div class="slider-item">
-            <h2 class="slider-heading">About RIM</h2>
-            <p class="slider-text">M S Ramaiah Institute of Management (MSRIM), established in 1995 by the Gokula Education Foundation (GEF), is part of the Ramaiah Group of Institutions, Bengaluru. Renowned for quality education, the Ramaiah Group operates 29 institutions across fields like healthcare, medical education, engineering, and general sciences. MSRIM, located in the heart of Bengaluru, is a top choice among business schools, offering an NBA-accredited PGDM program equivalent to an MBA (approved by AIU). Consistently ranked among India's top 100 business schools, its industry-oriented curriculum, designed by academic and industry experts, combines innovative teaching methods to produce globally competent, vision-driven leaders.</p>
-        </div>
-        <!-- <div class="slider-item">
-            <h2 class="slider-heading">24/7 Support</h2>
-            <p class="slider-text">Our dedicated support team is always here to help you. Get assistance whenever you need it, wherever you are in the world.</p>
-        </div> -->
-    </div>
-    <div class="slider-navigation">
-        <div class="nav-indicator selected"></div>
-        <div class="nav-indicator"></div>
-        <div class="nav-indicator"></div>
-        <!-- <div class="nav-indicator"></div> -->
-    </div>
-  </div>
+            // Replace this URL with your target website
+            const targetWebsite = './main.html';
 
-  <!-- events section -->
-  <div class="body bg1 home" id="event">
-    <div class="carousel-container" data-aos="fade-up" data-aos-duration="3000">
-      <button class="carousel-button prev-button">←</button>
-      <div class="carousel-wrapper">
-          <h2 class="head-carou">Core Events</h2>
-          <div class="carousel" id="carousel1">
-            <div class="card">
-                <div class="card-image-container">
-                    <img src="./assets/event_logos/new-org/E01.png" alt="Image 1">
-                </div>
-                <div class="card-button-container">
-                    <a href="#popup1" class="view-more">View More</a>
-                </div>
-            </div>
-            
-            <div class="card">
-                <div class="card-image-container">
-                    <img src="./assets/event_logos/new-org/E02.png" alt="Image 2">
-                </div>
-                <div class="card-button-container">
-                  <a href="#popup2" class="view-more">View More</a>
-                </div>
-            </div>
-            
-            <div class="card">
-                <div class="card-image-container">
-                    <img src="./assets/event_logos/new-org/E03.png" alt="Image 3">
-                </div>
-                <div class="card-button-container">
-                  <a href="#popup3" class="view-more">View More</a>
-                </div>
-            </div>
-            
-            <div class="card">
-                <div class="card-image-container">
-                    <img src="./assets/event_logos/new-org/E04.png" alt="Image 4">
-                </div>
-                <div class="card-button-container">
-                  <a href="#popup4" class="view-more">View More</a>
-                </div>
-            </div>
-            
-            <div class="card">
-                <div class="card-image-container">
-                    <img src="./assets/event_logos/new-org/E05.png" alt="Image 5">
-                </div>
-                <div class="card-button-container">
-                  <a href="#popup5" class="view-more">View More</a>
-                </div>
-            </div>
-            
-            <div class="card">
-                <div class="card-image-container">
-                    <img src="./assets/event_logos/new-org/E06.png" alt="Image 6">
-                </div>
-                <div class="card-button-container">
-                  <a href="#popup6" class="view-more">View More</a>
-                </div>
-            </div>
-           
-            <div class="card">
-                <div class="card-image-container">
-                    <img src="./assets/event_logos/new-org/E07.png" alt="Image 7">
-                </div>
-                <div class="card-button-container">
-                  <a href="#popup7" class="view-more">View More</a>
-                </div>
-            </div>
-            
-            <div class="card">
-                <div class="card-image-container">
-                    <img src="./assets/event_logos/new-org/E08.png" alt="Image 8">
-                </div>
-                <div class="card-button-container">
-                  <a href="#popup8" class="view-more">View More</a>
-                </div>
-            </div>
-            
-            <div class="card">
-              <div class="card-image-container">
-                  <img src="./assets/event_logos/new-org/E09.png" alt="Image 8">
-              </div>
-              <div class="card-button-container">
-                <a href="#popup9" class="view-more">View More</a>
-              </div>
-            </div>
-            
-            <div class="card">
-              <div class="card-image-container">
-                  <img src="./assets/event_logos/new-org/E10.png" alt="Image 8">
-              </div>
-              <div class="card-button-container">
-                <a href="#popup10" class="view-more">View More</a>
-              </div>
-            </div>
-            
-        </div>
-      </div>
-      <button class="carousel-button next-button">→</button>
-    </div>
-    <!-- event 1 details -->
-    <div id="popup1" class="popup-container" data-aos="fade-right">
-      <div class="popup-content">
-        <div class="popup-head">
-          <a href="#dept" class="close">
-            <p>&times;</p>
-          </a>
-          <h3>Rashtriya Nirman</h3>
-        </div>
-        <div class="contentMain">
-          <div class="tab-contents active-tab" id="overview1">
-            <div class="tab-ov">
-              <h3>Description:</h3>
-              <p>Step into the legacy of the Rashtrakutas, where innovation
-                fueled empire-building! Rashtriya Nirman puts your managerial
-                skills to the test, challenging you to strategize, lead, and create
-                sustainable solutions. Unite with the spirit of this golden era
-                and build the best management team to pave your way to
-                victory.
-              </p><br>
-              <div class="eveco">
-                <h3>Team Size:</h3>
-                <p>4 Members</p>
-              </div><br>
-              <div class="eveco">
-                <h3>Cash Prize :</h3>
-                <p>Winners - Rs. 7500/-</p>
-                <p> Runners - Rs. 3500/- </p>
-              </div>
-              <br>
-              <div class="eveco">
-                <h3>Registration fee: </h3>
-                <p>Rs.800/Team</p>
+            // Check for reduced motion preference
+            const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            const progressInterval = prefersReducedMotion ? 100 : 500;
 
-              </div>
-              <br>
-              <div class="eveco">
-                <h3>Coordinators:</h3>
-                <p>Arvind K - 8904516991
-                </p>
-                <p> Sriram R - 9108910798
-                </p>
-              </div>
-            </div>
-            <center><button class="btn"><a href="Register.html">Register Now</a></button></center>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- event 1 details end-->
-    <!-- event 2 details -->
-    <div id="popup2" class="popup-container" data-aos="fade-right">
-      <div class="popup-content">
-        <div class="popup-head">
-          <a href="#dept" class="close">
-            <p>&times;</p>
-          </a>
-          <h3>Vijaya Best</h3>
-        </div>
-        <div class="contentMain">
-          <div class="tab-contents active-tab" id="overview1">
-            <div class="tab-ov">
-              <h3>Description:</h3>
-              <p>Exemplary event management and strategic planning
-                highlight decisive leadership and adaptability. Being the
-                best manager requires balancing vision, strategy, and
-                execution, much like how we organize and lead our event
-                to ensure its success and impact.
-              </p>
-              <br>
-              <div class="eveco">
-                <h3>Team Size:</h3>
-                <p>1 Members</p>
-              </div>
-              <br>
-              <div class="eveco">
-                <h3>Cash Prize :</h3>
-                <p>Winners - Rs. 7500/-</p>
-                <p> Runners - Rs. 3500/- </p>
-              </div>
-              <br>
-              <div class="eveco">
-                <h3>Registration fee: </h3>
-                <p>Rs.800/Team</p>
-              </div>
-              <br>
-              <div class="eveco">
-                <h3>Coordinators:</h3>
-                <p>Paramjeet Roy - 8697095476</p>
-                <p>Isha Jha - 8084738806</p>
-              </div>
-            </div>
-            <center><button class="btn"><a href="Register.html">Register Now</a></button></center>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- event 2 details end -->
-    <!-- event 3 details -->
-    <div id="popup3" class="popup-container" data-aos="fade-right">
-      <div class="popup-content">
-        <div class="popup-head">
-          <a href="#dept" class="close">
-            <p>&times;</p>
-          </a>
-          <h3>PandiyaNance</h3>
-        </div>
-        <div class="contentMain">
-          <div class="tab-contents active-tab" id="overview1">
-            <div class="tab-ov">
-              <h3>Description:</h3>
-              <p>The financial strength derived from strategic resource allocation
-                and planning highlights the core principles of financial
-                management. Just as finance drives growth, our event
-                emphasizes the importance of financial strategies, planning, and
-                effective management to ensure success and prosperity.
+            // Simulate loading progress
+            const interval = setInterval(() => {
+                loadingProgress += prefersReducedMotion ? 20 : Math.random() * 15;
+                if (loadingProgress > 100) loadingProgress = 100;
+                
+                progress.style.width = `${loadingProgress}%`;
+                percentage.textContent = `${Math.round(loadingProgress)}%`;
 
-              </p><br>
-              <div class="eveco">
-                <h3>Team Size:</h3>
-                <p>2 Members</p>
-              </div><br>
-              <div class="eveco">
-                <h3>Cash Prize :</h3>
-                <p>Winners - Rs. 7500/-</p>
-                <p> Runners - Rs. 3500/- </p>
-              </div>
-              <br>
-              <div class="eveco">
-                <h3>Registration fee: </h3>
-                <p>Rs.800/Team</p>
+                if (loadingProgress === 100) {
+                    clearInterval(interval);
+                    setTimeout(completeLoading, 500);
+                }
+            }, progressInterval);
 
-              </div>
-              <br>
-              <div class="eveco">
-                <h3>Coordinators:</h3>
-                <p>Meghana Kadimella - 7569499507
-                </p>
-                <p> Guru Karthik - 9704799945
-                </p>
-              </div>
-            </div>
-            <center><button class="btn"><a href="Register.html">Register Now</a></button></center>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- event 3 details end-->
-    <!-- event 4 details -->
-    <div id="popup4" class="popup-container" data-aos="fade-right">
-      <div class="popup-content">
-        <div class="popup-head">
-          <a href="#dept" class="close">
-            <p>&times;</p>
-          </a>
-          <h3>Hoysala DigiX</h3>
-        </div>
-        <div class="contentMain">
-          <div class="tab-contents active-tab" id="overview1">
-            <div class="tab-ov">
-              <h3>Description:</h3>
-              <p>Distinctive event concepts and creative approaches
-                symbolize innovation and out-of-the-box thinking. Just as
-                digital marketing thrives on fresh strategies to engage
-                audiences, our event utilizes innovative methods to
-                captivate participants and leave a lasting impact.
-
-              </p><br>
-              <div class="eveco">
-                <h3>Team Size:</h3>
-                <p>6 Members</p>
-              </div><br>
-              <div class="eveco">
-                <h3>Cash Prize :</h3>
-                <p>Winners - Rs. 7500/-</p>
-                <p> Runners - Rs. 3500/- </p>
-              </div>
-              <br>
-              <div class="eveco">
-                <h3>Registration fee: </h3>
-                <p>Rs.800/Team</p>
-
-              </div>
-              <br>
-              <div class="eveco">
-                <h3>Coordinators:</h3>
-                <p>Surbhi Kumari - 6207965922
-                </p>
-                <p> Manish Singha - 8638754248
-                </p>
-              </div>
-            </div>
-            <center><button class="btn"><a href="Register.html">Register Now</a></button></center>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- event 4 details end-->
-    <!-- event 5 details -->
-    <div id="popup5" class="popup-container" data-aos="fade-right">
-      <div class="popup-content">
-        <div class="popup-head">
-          <a href="#dept" class="close">
-            <p>&times;</p>
-          </a>
-          <h3>Cherarketers</h3>
-        </div>
-        <div class="contentMain">
-          <div class="tab-contents active-tab" id="overview1">
-            <div class="tab-ov">
-              <h3>Description:</h3>
-              <p>Expertise in event management, much like the strategic thinking
-                in trade, demonstrates the importance of precision and effective
-                communication. Marketing within our event focuses on
-                identifying unique value propositions and reaching the right
-                audience with targeted strategies, similar to the acumen required
-                in successful trade.
-
-
-              </p><br>
-              <div class="eveco">
-                <h3>Team Size:</h3>
-                <p>4 Members</p>
-              </div><br>
-              <div class="eveco">
-                <h3>Cash Prize :</h3>
-                <p>Winners - Rs. 7500/-</p>
-                <p> Runners - Rs. 3500/- </p>
-              </div>
-              <br>
-              <div class="eveco">
-                <h3>Registration fee: </h3>
-                <p>Rs.800/Team</p>
-
-              </div>
-              <br>
-              <div class="eveco">
-                <h3>Coordinators:</h3>
-                <p>Anurag Pratap Singh - 7800810449
-                </p>
-                <p> Naresh - 7892738734
-
-                </p>
-              </div>
-            </div>
-            <center><button class="btn"><a href="Register.html">Register Now</a></button></center>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- event 5 details end-->
-    <!-- event 6 details -->
-    <div id="popup6" class="popup-container" data-aos="fade-right">
-      <div class="popup-content">
-        <div class="popup-head">
-          <a href="#dept" class="close">
-            <p>&times;</p>
-          </a>
-          <h3>PallaVision</h3>
-        </div>
-        <div class="contentMain">
-          <div class="tab-contents active-tab" id="overview1">
-            <div class="tab-ov">
-              <h3>Description:</h3>
-              <p>Innovation in event planning and organizational growth
-                emphasizes strategic thinking and a visionary approach.
-                Just as business analytics transforms data into actionable
-                insights, our event orchestrates creativity and structure to
-                foster progress and success.
-
-              </p><br>
-              <div class="eveco">
-                <h3>Team Size:</h3>
-                <p>4 Members</p>
-              </div><br>
-              <div class="eveco">
-                <h3>Cash Prize :</h3>
-                <p>Winners - Rs. 7500/-</p>
-                <p> Runners - Rs. 3500/- </p>
-              </div>
-              <br>
-              <div class="eveco">
-                <h3>Registration fee: </h3>
-                <p>Rs.800/Team</p>
-
-              </div>
-              <br>
-              <div class="eveco">
-                <h3>Coordinators:</h3>
-                <p>Anushka Pai - 7204878512
-
-                </p>
-                <p> Vignesh G - 9148118191
-                </p>
-              </div>
-            </div>
-            <center><button class="btn"><a href="Register.html">Register Now</a></button></center>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- event 6 details end-->
-    <!-- event 7 details -->
-    <div id="popup7" class="popup-container" data-aos="fade-right">
-      <div class="popup-content">
-        <div class="popup-head">
-          <a href="#dept" class="close">
-            <p>&times;</p>
-          </a>
-          <h3>CholaOps</h3>
-        </div>
-        <div class="contentMain">
-          <div class="tab-contents active-tab" id="overview1">
-            <div class="tab-ov">
-              <h3>Description:</h3>
-              <p>Efficient administration and mastery over organizational
-                networks showcase the seamless management of resources
-                and processes. Our event operations depend on
-                coordination and execution to ensure everything runs
-                smoothly, much like a well-organized institution.
-              </p><br>
-              <div class="eveco">
-                <h3>Team Size:</h3>
-                <p>2 Members</p>
-              </div><br>
-              <div class="eveco">
-                <h3>Cash Prize :</h3>
-                <p>Winners - Rs. 7500/-</p>
-                <p> Runners - Rs. 3500/- </p>
-              </div>
-              <br>
-              <div class="eveco">
-                <h3>Registration fee: </h3>
-                <p>Rs.800/Team</p>
-
-              </div>
-              <br>
-              <div class="eveco">
-                <h3>Coordinators:</h3>
-                <p>Gokul Krishna V - 8310000895
-                </p>
-                <p>P Sai Deekshitha - 8978197611
-                </p>
-              </div>
-            </div>
-            <center><button class="btn"><a href="Register.html">Register Now</a></button></center>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- event 7 details end-->
-    <!-- event 8 details -->
-    <div id="popup8" class="popup-container" data-aos="fade-right">
-      <div class="popup-content">
-        <div class="popup-head">
-          <a href="#dept" class="close">
-            <p>&times;</p>
-          </a>
-          <h3>SatavaHR</h3>
-        </div>
-        <div class="contentMain">
-          <div class="tab-contents active-tab" id="overview1">
-            <div class="tab-ov">
-              <h3>Description:</h3>
-              <p>Inclusive event planning and the successful management
-                of diverse participants highlight effective coordination and
-                collaboration. Just as human resource management
-                focuses on fostering harmony and productivity, our event
-                emphasizes teamwork and seamless interaction to ensure
-                success.
-
-
-              </p><br>
-              <div class="eveco">
-                <h3>Team Size:</h3>
-                <p>3 Members</p>
-              </div><br>
-              <div class="eveco">
-                <h3>Cash Prize :</h3>
-                <p>Winners - Rs. 7500/-</p>
-                <p> Runners - Rs. 3500/- </p>
-              </div>
-              <br>
-              <div class="eveco">
-                <h3>Registration fee: </h3>
-                <p>Rs.800/Team</p>
-
-              </div>
-              <br>
-              <div class="eveco">
-                <h3>Coordinators:</h3>
-                <p>Akshata B H - 9380752524
-                </p>
-                <p> Pooja Sasnur - 8197743508
-                </p>
-              </div>
-            </div>
-            <center><button class="btn"><a href="Register.html">Register Now</a></button></center>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- event 8 details end-->
-    <!-- event 9 details -->
-    <div id="popup9" class="popup-container" data-aos="fade-right">
-      <div class="popup-content">
-        <div class="popup-head">
-          <a href="#dept" class="close">
-            <p>&times;</p>
-          </a>
-          <h3>Chalupreneur</h3>
-        </div>
-        <div class="contentMain">
-          <div class="tab-contents active-tab" id="overview1">
-            <div class="tab-ov">
-              <h3>Description:</h3>
-              <p>The ability to successfully manage and execute events across
-                diverse domains showcases resilience and initiative. Just as
-                entrepreneurship thrives on recognizing opportunities and
-                overcoming challenges, our event emphasizes the importance of
-                innovation and strategic thinking to drive lasting success.
-
-              </p><br>
-              <div class="eveco">
-                <h3>Team Size:</h3>
-                <p>3 Members</p>
-              </div><br>
-              <div class="eveco">
-                <h3>Cash Prize :</h3>
-                <p>Winners - Rs. 7500/-</p>
-                <p> Runners - Rs. 3500/- </p>
-              </div>
-              <br>
-              <div class="eveco">
-                <h3>Registration fee: </h3>
-                <p>Rs.800/Team</p>
-
-              </div>
-              <br>
-              <div class="eveco">
-                <h3>Coordinators:</h3>
-                <p>M Charan - 9148626039
-                </p>
-                <p> Rajul Thadani - 9108055722
-                </p>
-              </div>
-            </div>
-            <center><button class="btn"><a href="Register.html">Register Now</a></button></center>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- event 9 details end-->
-    <!-- event 10 details -->
-    <div id="popup10" class="popup-container" data-aos="fade-right">
-      <div class="popup-content">
-        <div class="popup-head">
-          <a href="#dept" class="close">
-            <p>&times;</p>
-          </a>
-          <h3>Mauryan Mandate</h3>
-        </div>
-        <div class="contentMain">
-          <div class="tab-contents active-tab" id="overview1">
-            <div class="tab-ov">
-              <h3>Description:</h3>
-              <p>Inspired by the administrative brilliance and economic foresight of the
-                Mauryan dynasty, Mauryan Mandate focuses on exploring economics and
-                public policy. Much like the Mauryans established strategic governance and
-                resource management, our Economics and Public Policy Inquiry Club events
-                foster critical inquiry, innovative solutions, and thought-provoking discussions
-                to address contemporary economic and policy challenges.
-
-              </p><br>
-              <div class="eveco">
-                <h3>Team Size:</h3>
-                <p>2 Members</p>
-              </div><br>
-              <div class="eveco">
-                <h3>Cash Prize :</h3>
-                <p>Winners - Rs. 7500/-</p>
-                <p> Runners - Rs. 3500/- </p>
-              </div>
-              <br>
-              <div class="eveco">
-                <h3>Registration fee: </h3>
-                <p>Rs.800/Team</p>
-
-              </div>
-              <br>
-              <div class="eveco">
-                <h3>Coordinators:</h3>
-                <p>Mahak Tomar - 7999560542
-                </p>
-                <p> Saksham Sharma - 9611768106
-                </p>
-              </div>
-            </div>
-            <center><button class="btn"><a href="Register.html">Register Now</a></button></center>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- event 10 details end-->
-
-    <!-- Carousel 2 -->
-    <div class="carousel-container" data-aos="fade-up" data-aos-duration="3000">
-        <button class="carousel-button prev-button">←</button>
-        <div class="carousel-wrapper">
-          <h2 class="head-carou">Cultural Events</h2>
-            <div class="carousel" id="carousel2">
-                <div class="card">
-                    <div class="card-image-container">
-                        <img src="./assets/event_logos/new-org/E11.png" alt="Image 1">
-                    </div>
-                    <div class="card-button-container">
-                      <a href="#popup11" class="view-more">View More</a>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-image-container">
-                        <img src="./assets/event_logos/new-org/E12.png" alt="Image 2">
-                    </div>
-                    <div class="card-button-container">
-                      <a href="#popup12" class="view-more">View More</a>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-image-container">
-                        <img src="./assets/event_logos/new-org/E13.png" alt="Image 3">
-                    </div>
-                    <div class="card-button-container">
-                      <a href="#popup13" class="view-more">View More</a>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-image-container">
-                        <img src="./assets/event_logos/new-org/E14.png" alt="Image 4">
-                    </div>
-                    <div class="card-button-container">
-                      <a href="#popup14" class="view-more">View More</a>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-image-container">
-                        <img src="./assets/event_logos/new-org/E15.png" alt="Image 5">
-                    </div>
-                    <div class="card-button-container">
-                      <a href="#popup15" class="view-more">View More</a>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-image-container">
-                        <img src="./assets/event_logos/new-org/E16.png" alt="Image 6">
-                    </div>
-                    <div class="card-button-container">
-                      <a href="#popup16" class="view-more">View More</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <button class="carousel-button next-button">→</button>
-    </div>
-
-    <!-- event 11 details -->
-    <div id="popup11" class="popup-container" data-aos="fade-right">
-      <div class="popup-content">
-        <div class="popup-head">
-          <a href="#dept" class="close">
-            <p>&times;</p>
-          </a>
-          <h3>Nayaka Corporate</h3>
-        </div>
-        <div class="contentMain">
-          <div class="tab-contents active-tab" id="overview1">
-            <div class="tab-ov">
-              <h3>Description:</h3>
-              <p>Resilience and versatility in leadership and strategy reflect the
-                bold and adventurous spirit. Our physical fitness events
-                challenge participants to demonstrate adaptability, teamwork,
-                and the courage to face challenges head-on, testing their
-                management skills in dynamic and demanding scenarios.
-
-              </p><br>
-              <div class="eveco">
-                <h3>Team Size:</h3>
-                <p>2 Members</p>
-              </div><br>
-              <div class="eveco">
-                <h3>Cash Prize :</h3>
-                <p>Winners - Rs. 6000/-</p>
-                <p> Runners - Rs. 3000/- </p>
-              </div>
-              <br>
-              <div class="eveco">
-                <h3>Registration fee: </h3>
-                <p>Rs.1000/Team</p>
-
-              </div>
-              <br>
-              <div class="eveco">
-                <h3>Coordinators:</h3>
-                <p>Gokul Krishna V -
-                </p>
-                <p>P Sai Deekshitha -
-                </p>
-              </div>
-            </div>
-            <center><button class="btn"><a href="Register.html">Register Now</a></button></center>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- event 11 details end -->
-    <!-- event 12 details -->
-    <div id="popup12" class="popup-container" data-aos="fade-right">
-      <div class="popup-content">
-        <div class="popup-head">
-          <a href="#dept" class="close">
-            <p>&times;</p>
-          </a>
-          <h3>Ikshvaku Frame</h3>
-        </div>
-        <div class="contentMain">
-          <div class="tab-contents active-tab" id="overview1">
-            <div class="tab-ov">
-              <h3>Description:</h3>
-              <p>Patronage of art and vivid storytelling through sculptures
-                reflect attention to detail and narrative building.
-                Photography captures moments and tells stories visually,
-                echoing their artistic focus.
-              </p><br>
-              <div class="eveco">
-                <h3>Team Size:</h3>
-                <p>1 Member</p>
-              </div><br>
-              <div class="eveco">
-                <h3>Cash Prize :</h3>
-                <p>Winners - Rs. 2000/-</p>
-                <p> Runners - Rs. 1000/- </p>
-              </div>
-              <br>
-              <div class="eveco">
-                <h3>Registration fee: </h3>
-                <p>Rs.200/Team</p>
-
-              </div>
-              <br>
-              <div class="eveco">
-                <h3>Coordinators:</h3>
-                <p>Stanley - 7989308082
-                </p>
-                <p>
-                </p>
-              </div>
-            </div>
-            <center><button class="btn"><a href="Register.html">Register Now</a></button></center>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- event 12 details end -->
-    <div id="popup13" class="popup-container" data-aos="fade-right">
-      <div class="popup-content">
-        <div class="popup-head">
-          <a href="#dept" class="close">
-            <p>&times;</p>
-          </a>
-          <h3>Maratha Strut</h3>
-        </div>
-        <div class="contentMain">
-          <div class="tab-contents active-tab" id="overview1">
-            <div class="tab-ov">
-              <h3>Description:</h3>
-              <p>Vibrant strategies with intricate planning symbolize
-                creativity, identity, and organizational pride. Our fashion
-                walk, themed around dynasties, showcases the fusion of
-                innovative thinking, team collaboration, and the celebration
-                of heritage through expressive designs, reflecting the strength
-                and legacy of powerful dynasties.
-
-
-              </p><br>
-              <div class="eveco">
-                <h3>Team Size:</h3>
-                <p>8-12 Members</p>
-              </div><br>
-              <div class="eveco">
-                <h3>Cash Prize :</h3>
-                <p>Winners - Rs. 8000/-</p>
-                <p> Runners - Rs. 4000/- </p>
-              </div>
-              <br>
-              <div class="eveco">
-                <h3>Registration fee: </h3>
-                <p>Rs.800/Team</p>
-
-              </div>
-              <br>
-              <div class="eveco">
-                <h3>Coordinators:</h3>
-                <p>R Janikiram Reddy - 9515983285
-                </p>
-                <p>Brinda k - 7892170586</p>
-              </div>
-            </div>
-            <center><button class="btn"><a href="Register.html">Register Now</a></button></center>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- event 13 details -->
-    <div id="popup14" class="popup-container" data-aos="fade-right">
-      <div class="popup-content">
-        <div class="popup-head">
-          <a href="#dept" class="close">
-            <p>&times;</p>
-          </a>
-          <h3>Gupta Grooves</h3>
-        </div>
-        <div class="contentMain">
-          <div class="tab-contents active-tab" id="overview1">
-            <div class="tab-ov">
-              <h3>Description:</h3>
-              <p>The golden age of culture and arts highlights rhythm,
-                grace, and storytelling. Our solo dance event celebrates
-                creativity and cultural expression, much like that era
-                ’
-                s
-                dedication to artistic excellence, where each performance
-                reflects individual talent and the power of storytelling
-                through movement.
-
-
-              </p><br>
-              <div class="eveco">
-                <h3>Team Size:</h3>
-                <p>1 Member</p>
-              </div><br>
-              <div class="eveco">
-                <h3>Cash Prize :</h3>
-                <p>Winners - Rs. 2000/-</p>
-                <p> Runners - Rs. 1000/- </p>
-              </div>
-              <br>
-              <div class="eveco">
-                <h3>Registration fee: </h3>
-                <p>Rs.200/Team</p>
-
-              </div>
-              <br>
-              <div class="eveco">
-                <h3>Coordinators:</h3>
-                <p>Pratisruti Roy - 9583611035
-                <p>
-                </p>
-              </div>
-            </div>
-            <center><button class="btn"><a href="Register.html">Register Now</a></button></center>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- event 13 details end-->
-    <!-- event 14 details -->
-    <div id="popup14" class="popup-container" data-aos="fade-right">
-      <div class="popup-content">
-        <div class="popup-head">
-          <a href="#dept" class="close">
-            <p>&times;</p>
-          </a>
-          <h3>Gupta Grooves</h3>
-        </div>
-        <div class="contentMain">
-          <div class="tab-contents active-tab" id="overview1">
-            <div class="tab-ov">
-              <h3>Description:</h3>
-              <p>The golden age of culture and arts highlights rhythm,
-                grace, and storytelling. Our solo dance event celebrates
-                creativity and cultural expression, much like that era
-                ’
-                s
-                dedication to artistic excellence, where each performance
-                reflects individual talent and the power of storytelling
-                through movement.
-
-
-              </p><br>
-              <div class="eveco">
-                <h3>Team Size:</h3>
-                <p>1 Member</p>
-              </div><br>
-              <div class="eveco">
-                <h3>Cash Prize :</h3>
-                <p>Winners - Rs. 2000/-</p>
-                <p> Runners - Rs. 1000/- </p>
-              </div>
-              <br>
-              <div class="eveco">
-                <h3>Registration fee: </h3>
-                <p>Rs.200/Team</p>
-
-              </div>
-              <br>
-              <div class="eveco">
-                <h3>Coordinators:</h3>
-                <p>Pratisruti Roy - 9583611035
-                <p>
-                </p>
-              </div>
-            </div>
-            <center><button class="btn"><a href="Register.html">Register Now</a></button></center>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- event 14 details end-->
-    <!-- event 15 details -->
-    <div id="popup15" class="popup-container" data-aos="fade-right">
-      <div class="popup-content">
-        <div class="popup-head">
-          <a href="#dept" class="close">
-            <p>&times;</p>
-          </a>
-          <h3>Natya Mayuri</h3>
-        </div>
-        <div class="contentMain">
-          <div class="tab-contents active-tab" id="overview1">
-            <div class="tab-ov">
-              <h3>Description:</h3>
-              <p>Natya Mayuri celebrates the synergy and coordination of group
-                dance, highlighting synchronized movements, creativity, and
-                cultural storytelling, all brought to life with captivating grace and
-                rhythm, much like our group dance event, which emphasizes
-                teamwork, collaboration, and artistic expression.
-
-
-
-              </p><br>
-              <div class="eveco">
-                <h3>Team Size:</h3>
-                <p>6-12 Members</p>
-              </div><br>
-              <div class="eveco">
-                <h3>Cash Prize :</h3>
-                <p>Winners - Rs. 4000/-</p>
-                <p> Runners - Rs. 2500/- </p>
-              </div>
-              <br>
-              <div class="eveco">
-                <h3>Registration fee: </h3>
-                <p>Rs.800/Team</p>
-
-              </div>
-              <br>
-              <div class="eveco">
-                <h3>Coordinators:</h3>
-                <p>Gokul Krishna V -
-
-                </p>
-                <p>P Sai Deekshitha -
-                </p>
-              </div>
-            </div>
-            <center><button class="btn"><a href="Register.html">Register Now</a></button></center>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- event 15 details end-->
-    <!-- event 16 details -->
-    <div id="popup16" class="popup-container" data-aos="fade-right">
-      <div class="popup-content">
-        <div class="popup-head">
-          <a href="#dept" class="close">
-            <p>&times;</p>
-          </a>
-          <h3>Kadamba Harmony</h3>
-        </div>
-        <div class="contentMain">
-          <div class="tab-contents active-tab" id="overview1">
-            <div class="tab-ov">
-              <h3>Description:</h3>
-              <p>Emphasis on regional pride and cultural identity highlights
-                the strength of expressive art forms. Our solo singing event
-                channels emotions and stories, reflecting the celebration of
-                creativity and individuality, much like the tradition of
-                honoring unique voices and cultural expression.
-
-
-
-              </p><br>
-              <div class="eveco">
-                <h3>Team Size:</h3>
-                <p>2 Members</p>
-              </div><br>
-              <div class="eveco">
-                <h3>Cash Prize :</h3>
-                <p>Winners - Rs. 1500/-</p>
-                <p> Runners - Rs. 1000/- </p>
-              </div>
-              <br>
-              <div class="eveco">
-                <h3>Registration fee: </h3>
-                <p>Rs.800/Team</p>
-
-              </div>
-              <br>
-              <div class="eveco">
-                <h3>Coordinators:</h3>
-                <p>Pratisruti Roy - 9583611035
-                </p>
-                <p>
-                </p>
-              </div>
-            </div>
-            <center><button class="btn"><a href="Register.html">Register Now</a></button></center>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- event 16 details end-->
-
-    <!-- Carousel 3 -->
-    <div class="carousel-container" data-aos="fade-up" data-aos-duration="3000">
-        <button class="carousel-button prev-button">←</button>
-        <div class="carousel-wrapper">
-          <h2 class="head-carou">Sports Events</h2>
-            <div class="carousel" id="carousel3">
-                <div class="card">
-                    <div class="card-image-container">
-                        <img src="./assets/event_logos/new-org/E17.png" alt="Image 1">
-                    </div>
-                    <div class="card-button-container">
-                      <a href="#popup17" class="view-more">View More</a>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-image-container">
-                        <img src="./assets/event_logos/new-org/E18.png" alt="Image 2">
-                    </div>
-                    <div class="card-button-container">
-                      <a href="#popup18" class="view-more">View More</a>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-image-container">
-                        <img src="./assets/event_logos/new-org/E19.png" alt="Image 3">
-                    </div>
-                    <div class="card-button-container">
-                      <a href="#popup19" class="view-more">View More</a>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-image-container">
-                        <img src="./assets/event_logos/new-org/E20.png" alt="Image 4">
-                    </div>
-                    <div class="card-button-container">
-                      <a href="#popup20" class="view-more">View More</a>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-image-container">
-                        <img src="./assets/event_logos/new-org/E21.png" alt="Image 5">
-                    </div>
-                    <div class="card-button-container">
-                      <a href="#popup21" class="view-more">View More</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <button class="carousel-button next-button">→</button>
-    </div>
-
-    <!-- event 17 details -->
-    <div id="popup17" class="popup-container" data-aos="fade-right">
-      <div class="popup-content">
-        <div class="popup-head">
-          <a href="#dept" class="close">
-            <p>&times;</p>
-          </a>
-          <h3>Wadiyar XI</h3>
-        </div>
-        <div class="contentMain">
-          <div class="tab-contents active-tab" id="overview1">
-            <div class="tab-ov">
-              <h3>Description:</h3>
-              <p>Promotion of sports and athletic development reflects
-                strategic support and encouragement of talent. Cricket
-                embodies teamwork, strategy, and skill, connecting
-                tradition with modern-day sportsmanship.
-              </p><br>
-              <div class="eveco">
-                <h3>Team Size:</h3>
-                <p>14 Members</p>
-              </div><br>
-              <div class="eveco">
-                <h3>Cash Prize :</h3>
-                <p>Winners - Rs. 7500/-</p>
-                <p> Runners - Rs. 5000/- </p>
-              </div>
-              <br>
-              <div class="eveco">
-                <h3>Registration fee: </h3>
-                <p>Rs.1500/Team</p>
-
-              </div>
-              <br>
-              <div class="eveco">
-                <h3>Coordinators:</h3>
-                <p>Kishore - 9003229056
-                </p>
-                <p>Aravind - 6381932039
-                </p>
-              </div>
-            </div>
-            <center><button class="btn"><a href="Register.html">Register Now</a></button></center>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- event 17 details end -->
-    <!-- event 18 details -->
-    <div id="popup18" class="popup-container" data-aos="fade-right">
-      <div class="popup-content">
-        <div class="popup-head">
-          <a href="#dept" class="close">
-            <p>&times;</p>
-          </a>
-          <h3>Ganga Volley</h3>
-        </div>
-        <div class="contentMain">
-          <div class="tab-contents active-tab" id="overview1">
-            <div class="tab-ov">
-              <h3>Description:</h3>
-              <p>Inspired by the strategic mastery of the Ganga dynasty, Ganga
-                Volley highlights the importance of balanced play and adaptability.
-                Just as the Gangas thrived through tactical brilliance, our volleyball
-                event emphasizes precision, teamwork, and versatility, where
-                success is driven by strategic execution and coordination.
-              </p><br>
-              <div class="eveco">
-                <h3>Team Size:</h3>
-                <p>9 Members</p>
-              </div><br>
-              <div class="eveco">
-                <h3>Cash Prize :</h3>
-                <p>Winners - Rs. 6000/-</p>
-                <p> Runners - Rs. 4000/- </p>
-              </div>
-              <br>
-              <div class="eveco">
-                <h3>Registration fee: </h3>
-                <p>Rs.800/Team</p>
-
-              </div>
-              <br>
-              <div class="eveco">
-                <h3>Coordinators:</h3>
-                <p>Sanjay - 6385395585
-                </p>
-                <p>Prem - 9489288137
-                </p>
-              </div>
-            </div>
-            <center><button class="btn"><a href="Register.html">Register Now</a></button></center>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- event 18 details end -->
-    <!-- event 19 details -->
-    <div id="popup19" class="popup-container" data-aos="fade-right">
-      <div class="popup-content">
-        <div class="popup-head">
-          <a href="#dept" class="close">
-            <p>&times;</p>
-          </a>
-          <h3>Travancore Triumph</h3>
-        </div>
-        <div class="contentMain">
-          <div class="tab-contents active-tab" id="overview1">
-            <div class="tab-ov">
-              <h3>Description:</h3>
-              <p>Inspired by the maritime strength and strategic brilliance of the
-                Travancore dynasty, Travancore Triumph emphasizes seamless ball
-                control, strategic passing, and tactical superiority. Our football event
-                showcases the power of teamwork and sharp strategy, where teams
-                collaborate and execute with precision to secure victory.
-              </p><br>
-              <div class="eveco">
-                <h3>Team Size:</h3>
-                <p>9 Members</p>
-              </div><br>
-              <div class="eveco">
-                <h3>Cash Prize :</h3>
-                <p>Winners - Rs. 5000/-</p>
-                <p> Runners - Rs. 3000/- </p>
-              </div>
-              <br>
-              <div class="eveco">
-                <h3>Registration fee: </h3>
-                <p>Rs.800/Team</p>
-
-              </div>
-              <br>
-              <div class="eveco">
-                <h3>Coordinators:</h3>
-                <p>Joel Alan Paulo - 9489688365
-                </p>
-                <p>Karthik - 8830469849
-                </p>
-              </div>
-            </div>
-            <center><button class="btn"><a href="Register.html">Register Now</a></button></center>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- event 19 details end -->
-    <!-- event 20 details -->
-    <div id="popup20" class="popup-container" data-aos="fade-right">
-      <div class="popup-content">
-        <div class="popup-head">
-          <a href="#dept" class="close">
-            <p>&times;</p>
-          </a>
-          <h3>Kakatiyan Quest </h3>
-        </div>
-        <div class="contentMain">
-          <div class="tab-contents active-tab" id="overview1">
-            <div class="tab-ov">
-              <h3>Description:</h3>
-              <p>Adaptability in strategy and swift decision-making are
-                essential for successful planning and execution. Our
-                treasure hunt game mirrors these qualities, requiring quick
-                thinking, coordination, and strategic insight, where success
-                is determined by how effectively teams navigate challenges
-                and uncover clues.
-              </p><br>
-              <div class="eveco">
-                <h3>Team Size:</h3>
-                <p>4 Members</p>
-              </div><br>
-              <div class="eveco">
-                <h3>Cash Prize :</h3>
-                <p>Winners - Rs. 2500/-</p>
-                <p> Runners - Rs. 1500/- </p>
-              </div>
-              <br>
-              <div class="eveco">
-                <h3>Registration fee: </h3>
-                <p>Rs.600/Team</p>
-
-              </div>
-              <br>
-              <div class="eveco">
-                <h3>Coordinators:</h3>
-                <p>Pranav.R - 7259674248
-                </p>
-                <p>Chris Jack D'souza - 8296004869
-                </p>
-              </div>
-            </div>
-            <center><button class="btn"><a href="Register.html">Register Now</a></button></center>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- event 20 details end -->
-    <!-- event 21 details -->
-    <div id="popup21" class="popup-container" data-aos="fade-right">
-      <div class="popup-content">
-        <div class="popup-head">
-          <a href="#dept" class="close">
-            <p>&times;</p>
-          </a>
-          <h3>Yadava Battle</h3>
-        </div>
-        <div class="contentMain">
-          <div class="tab-contents active-tab" id="overview1">
-            <div class="tab-ov">
-              <h3>Description:</h3>
-              <p>Adaptability in strategy and quick decision-making
-                highlight the importance of strategic planning and sharp
-                reflexes. Our BGMI event mirrors these qualities, where
-                quick thinking, coordination, and effective strategy play a
-                crucial role in determining success and leadership.
-              </p><br>
-              <div class="eveco">
-                <h3>Team Size:</h3>
-                <p>4 Members</p>
-              </div><br>
-              <div class="eveco">
-                <h3>Cash Prize :</h3>
-                <p>Winners - Rs. 2500/-</p>
-                <p> Runners - Rs. 1500/- </p>
-              </div>
-              <br>
-              <div class="eveco">
-                <h3>Registration fee: </h3>
-                <p>Rs.400/Team</p>
-
-              </div>
-              <br>
-              <div class="eveco">
-                <h3>Coordinators:</h3>
-                <p>Bharani raja - 9087144948
-                </p>
-                <p>Rudhramani - 9902903034
-                </p>
-              </div>
-            </div>
-            <center><button class="btn"><a href="Register.html">Register Now</a></button></center>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- event 21 details end -->
-
-    <!-- highlights -->
-    <div class="event-slider-wrapper">
-      <center><h1 data-aos="flip-up" data-aos-duration="3000">Highlights of Last Season</h1></center>
-      <div class="event-slider-content">
-          <div class="event-slider-item">
-            <img class="event-slider-image" src="./assets/images/img02.jpg" alt="Event 1">
-          </div>
-          <div class="event-slider-item">
-            <img class="event-slider-image" src="./assets/images/img03.JPG" alt="Event 1">
-          </div>
-          <div class="event-slider-item">
-            <img class="event-slider-image" src="./assets/images/img04.jpg" alt="Event 1">
-          </div>
-          <div class="event-slider-item">
-            <img class="event-slider-image" src="./assets/images/img05.JPG" alt="Event 1">
-          </div>
-          <div class="event-slider-item">
-            <img class="event-slider-image" src="./assets/images/img06.JPG" alt="Event 1">
-          </div>
-          <div class="event-slider-item">
-            <img class="event-slider-image" src="./assets/images/img07.JPG" alt="Event 1">
-          </div>
-          <div class="event-slider-item">
-            <img class="event-slider-image" src="./assets/images/img08.jpg" alt="Event 1">
-          </div>
-      </div>
-      <div class="event-slider-indicators"></div>
-    </div>
-
-  </div>
-
-  <!-- sponsors start -->
-
-  <!-- <div id="sponsor bg1" class="spon">
-    <center>
-      <h1>Partners</h1>
-    </center>
-    <div class="spon-img">
-      <img src="./assets/event_logos/10.png" style="height: 150px; width: 150px;" alt="">
-      <img src="./assets/event_logos/10.png" style="height: 150px; width: 150px;" alt="">
-      <img src="./assets/event_logos/10.png" style="height: 150px; width: 150px;" alt="">
-      <img src="./assets/event_logos/10.png" style="height: 150px; width: 150px;" alt="">
-      <img src="./assets/event_logos/10.png" style="height: 150px; width: 150px;" alt="">
-      <img src="./assets/event_logos/10.png" style="height: 150px; width: 150px;" alt="">
-      <img src="./assets/event_logos/10.png" style="height: 150px; width: 150px;" alt="">
-      <img src="./assets/event_logos/10.png" style="height: 150px; width: 150px;" alt="">
-    </div>
-  </div> -->
-
-  <!-- footer -->
-  <footer class="section-p1 footer" id="footer" data-aos="fade-up" data-aos-duration="3000">
-    <div class="col1">
-      <img class="logo1" src="./assets/images/VAIBHAVA-TBG-LOGO.png" alt="" srcset="">
-      <h3 style="padding-top: 20px; letter-spacing: 2.5px;">VAIBHAVA</h3>
-      <h3 style="padding-top: 10px; letter-spacing: 2.5px;">Perceptions - 2k25</h3>
-    </div>
-    <div class="col1">
-      <h4>Quick Links</h4>
-      <a href="./index.html">Home</a>
-      <a href="bout.html">Vaibhava Team</a>
-      <a href="#event">Events</a>
-      <a href="#">Event Gallery</a>
-      <a href="#sponsor">Sponsors</a>
-      <a href="./contactus.html">Contact</a>
-      <a href="./register.html">Registration</a>
-    </div>
-    <div class="col1">
-      <div class="follow">
-        <h4>Follow us</h4>
-        <div class="icon">
-          <a href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram"></i><p>Instagram</p></a>
-          <a href="https://www.linkedin.com/school/m-s-ramaiah-insitute-of-management" target="_blank"><i class="fab fa-linkedin"></i><p>linkedin</p></a>
-        </div>
-      </div>
-    </div>
-    <div class="col2">
-      <img class="logo2" style="width: 275px;" src="./assets/logos/ramaiah_logo1.png" alt="" srcset="">
-      <img class="logo2" style="width: 230px;" src="./assets/logos/perceptionslogo.png" alt="" srcset="">
-    </div>
-  </footer>
-  <footer class="footer1">
-    <div class="copyright">
-      <p>Developed with &#x2665;&#xfe0f; By <a href="http://webwizardtej.co.in" target="_blank">SURYA TEJA TANKALA</a> & <a href="https://www.linkedin.com/in/dasari-jayanth-a14608211/" target="_blank">JAYANTH DASARI</a>.</p>
-      <p> &copy; copyrights reserved by <a href="http://startgenie.co.in" target="_blank">START GENIE</a></p>
-    </div>
-  </footer>
+            function completeLoading() {
+                redirectText.style.opacity = '1';
+                loaderContainer.classList.add('fade-out');
+                setTimeout(() => {
+                    window.location.href = targetWebsite;
+                }, 1500);
+            }
+        });
+    </script>
 </body>
-
-
-<script src="./js/script.js"></script>
-<script>
-
-document.addEventListener('DOMContentLoaded', function() {
-  const carousels = document.querySelectorAll('.carousel-container');
-  
-  carousels.forEach(container => {
-    const carousel = container.querySelector('.carousel');
-    const prevButton = container.querySelector('.prev-button');
-    const nextButton = container.querySelector('.next-button');
-    let currentIndex = 0;
-
-    function updateCarousel() {
-        const cardWidth = carousel.querySelector('.card').offsetWidth;
-        const gap = 20; // Gap between cards
-        const offset = -(currentIndex * (cardWidth + gap));
-        carousel.style.transform = `translateX(${offset}px)`;
-    }
-
-    function getVisibleCards() {
-        if (window.innerWidth <= 480) return 1;
-        if (window.innerWidth <= 768) return 2;
-        if (window.innerWidth <= 1024) return 2;
-        return 2;
-    }
-
-    function updateButtonsVisibility() {
-        const totalCards = carousel.children.length;
-        const visibleCards = getVisibleCards();
-        const maxIndex = totalCards - visibleCards;
-        
-        prevButton.style.visibility = currentIndex <= 0 ? 'hidden' : 'visible';
-        nextButton.style.visibility = currentIndex >= maxIndex ? 'hidden' : 'visible';
-    }
-
-    prevButton.addEventListener('click', () => {
-        const visibleCards = getVisibleCards();
-        currentIndex = Math.max(currentIndex - visibleCards, 0);
-        updateCarousel();
-        updateButtonsVisibility();
-    });
-
-    nextButton.addEventListener('click', () => {
-        const visibleCards = getVisibleCards();
-        const totalCards = carousel.children.length;
-        currentIndex = Math.min(currentIndex + visibleCards, totalCards - visibleCards);
-        updateCarousel();
-        updateButtonsVisibility();
-    });
-
-    // Handle window resize
-    window.addEventListener('resize', () => {
-        currentIndex = 0;
-        updateCarousel();
-        updateButtonsVisibility();
-    });
-
-    // Initial setup
-    updateButtonsVisibility();
-  });
-});
-
-// text slider change or transition
-
-document.addEventListener('DOMContentLoaded', function() {
-  const sliderItems = document.querySelectorAll('.slider-item');
-  const navIndicators = document.querySelectorAll('.nav-indicator');
-  let currentIndex = 0;
-  const intervalTime = 5000; // 5 seconds between slides
-  let sliderTimer;
-
-  function showSliderItem(index) {
-      sliderItems.forEach(item => item.classList.remove('current'));
-      navIndicators.forEach(indicator => indicator.classList.remove('selected'));
-
-      sliderItems[index].classList.add('current');
-      navIndicators[index].classList.add('selected');
-  }
-
-  function nextSliderItem() {
-      currentIndex = (currentIndex + 1) % sliderItems.length;
-      showSliderItem(currentIndex);
-  }
-
-  function startSliderTimer() {
-      if (sliderTimer) {
-          clearInterval(sliderTimer);
-      }
-      sliderTimer = setInterval(nextSliderItem, intervalTime);
-  }
-
-  navIndicators.forEach((indicator, index) => {
-      indicator.addEventListener('click', () => {
-          currentIndex = index;
-          showSliderItem(currentIndex);
-          startSliderTimer();
-      });
-  });
-
-  startSliderTimer();
-
-  const sliderWrapper = document.querySelector('.text-slider-wrapper');
-  sliderWrapper.addEventListener('mouseenter', () => {
-      clearInterval(sliderTimer);
-  });
-
-  sliderWrapper.addEventListener('mouseleave', () => {
-      startSliderTimer();
-  });
-});
-</script>
-<script>
-  AOS.init();
-</script>
-<script src="./js/banner.js"></script>
-<script src="./js/event_slider.js"></script>
 </html>

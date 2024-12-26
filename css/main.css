@@ -48,10 +48,10 @@ p{
 .bg1{
   background-image: url('../assets/images/bg1.png');
   background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    overflow: hidden;
-    min-height: 100vh;
+  background-position: center;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  min-height: 100vh;
 }
 
 @supports (-webkit-touch-callout: none) {
