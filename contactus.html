@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/main.css">
+    <title>Contact Us</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            overflow-y: auto;
+        }
+        .body {
+            display: flex;
+            flex-direction: column;
+            /* min-height: 100vh; */
+            padding: 20px;
+        }
+
+        nav{
+            margin-top: -20px;
+        }
+
+        .form-cont {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .container {
+            /* background: white; */
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            width: 100%;
+            max-width: 500px;
+        }
+
+        h2 {
+            color: #000;
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 28px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #000;
+            font-size: 16px;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        textarea {
+            height: 120px;
+            resize: vertical;
+        }
+
+        button {
+            background: #007bff;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        button:hover {
+            background: #0056b3;
+            transform: translateY(-1px);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        .error {
+            color: #dc3545;
+            font-size: 12px;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .success-message {
+            display: none;
+            color: #28a745;
+            text-align: center;
+            margin-top: 20px;
+            font-size: 16px;
+        }
+
+        /* Media Queries */
+        
+        /* For large desktop screens */
+        @media screen and (min-width: 1200px) {
+            .container {
+                max-width: 600px;
+                padding: 40px;
+            }
+
+            h2 {
+                font-size: 32px;
+            }
+
+            input,
+            textarea,
+            button {
+                font-size: 18px;
+            }
+        }
+
+        /* For tablet and smaller desktop screens */
+        @media screen and (max-width: 768px) {
+            .container {
+                padding: 25px;
+            }
+
+            h2 {
+                font-size: 24px;
+            }
+
+            input,
+            textarea {
+                padding: 10px;
+            }
+
+            .form-group {
+                margin-bottom: 15px;
+            }
+        }
+
+        /* For mobile devices */
+        @media screen and (max-width: 480px) {
+            .body {
+                padding: 10px;
+            }
+
+            .container {
+                padding: 20px;
+                border-radius: 6px;
+            }
+
+            h2 {
+                font-size: 22px;
+                margin-bottom: 15px;
+            }
+
+            label {
+                font-size: 14px;
+            }
+
+            input,
+            textarea,
+            button {
+                font-size: 14px;
+                padding: 8px;
+            }
+
+            .error {
+                font-size: 11px;
+            }
+
+            .success-message {
+                font-size: 14px;
+                margin-top: 15px;
+            }
+        }
+
+        /* For very small mobile devices */
+        @media screen and (max-width: 320px) {
+            .container {
+                padding: 15px;
+            }
+
+            h2 {
+                font-size: 20px;
+            }
+
+            input,
+            textarea {
+                padding: 6px;
+            }
+
+            .form-group {
+                margin-bottom: 12px;
+            }
+        }
+
+        /* For devices in landscape orientation */
+        @media screen and (max-height: 500px) and (orientation: landscape) {
+            .body {
+                padding: 10px;
+            }
+
+            .container {
+                padding: 15px;
+            }
+
+            h2 {
+                font-size: 20px;
+                margin-bottom: 10px;
+            }
+
+            .form-group {
+                margin-bottom: 10px;
+            }
+
+            textarea {
+                height: 80px;
+            }
+        }
+    </style>
+</head>
+<body class="bg">
+    <div class="body">
+        <nav>
+            <div class="nav-container">
+              <div class="logo-container start">
+                <img src="./assets/logos/ramaiah_logo.png" style="width: 250px;" alt="AITAM">
+              </div>
+              <ul class="link-container">
+                <li><a href="./index.html">HOME</a></li>
+                <li><a href="bout.html">TEAM</a></li>
+                <li><a href="#event">EVENTS</a></li>
+                <li><a href="./contactus.html">CONTACT US</a></li>
+              </ul>
+              <div class="hamburger">
+                <p>MENU</p>
+              </div>
+              <div class="logo-container end">
+                <img src="./assets/logos/perceptionslogo.png" style="width: 200px;" alt="End Logo">
+              </div>
+            </div>
+            <div class="dropdown">
+              <div class="close-container">
+                <button class="close-btn">X</button>
+              </div>
+              <ul class="dropdown-links">
+                <li><a href="#home">HOME</a></li>
+                <li><a href="bout.html">TEAM</a></li>
+                <li><a href="#event">EVENTS</a></li>
+                <li><a href="./contactus.html">CONTACT US</a></li>
+              </ul>
+            </div>
+        </nav>
+        <div class="form-cont">
+            <div class="container">
+                <h2>Contact Us</h2>
+                <form id="contactForm" onsubmit="return validateForm(event)">
+                    <div class="form-group">
+                        <label for="name">Name*</label>
+                        <input type="text" id="name" name="name">
+                        <div class="error" id="nameError">Please enter your name</div>
+                    </div>
+        
+                    <div class="form-group">
+                        <label for="email">Email*</label>
+                        <input type="email" id="email" name="email">
+                        <div class="error" id="emailError">Please enter a valid email address</div>
+                    </div>
+        
+                    <div class="form-group">
+                        <label for="subject">Subject*</label>
+                        <input type="text" id="subject" name="subject">
+                        <div class="error" id="subjectError">Please enter a subject</div>
+                    </div>
+        
+                    <div class="form-group">
+                        <label for="message">Message*</label>
+                        <textarea id="message" name="message"></textarea>
+                        <div class="error" id="messageError">Please enter your message</div>
+                    </div>
+        
+                    <button type="submit">Send Message</button>
+                </form>
+                <div class="success-message" id="successMessage">
+                    Thank you for your message. We will get back to you soon!
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="section-p1 footer" id="footer">
+        <div class="col1">
+          <img class="logo1" src="./assets/images/VAIBHAVA-TBG-LOGO.png" alt="" srcset="">
+          <h3 style="padding-top: 20px; letter-spacing: 2.5px;">VAIBHAVA</h3>
+          <h3 style="padding-top: 10px; letter-spacing: 2.5px;">Perceptions - 2k25</h3>
+        </div>
+        <div class="col1">
+          <h4>Quick Links</h4>
+          <a href="#home">Home</a>
+          <a href="bout.html">Vaibhava Team</a>
+          <a href="#event">Events</a>
+          <a href="#">Event Gallery</a>
+          <a href="#sponsor">Sponsors</a>
+          <a href="./contactus.html">Contact</a>
+          <a href="./register.html">Registration</a>
+        </div>
+        <div class="col1">
+          <div class="follow">
+            <h4>Follow us</h4>
+            <div class="icon">
+              <a href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram"></i><p>Instagram</p></a>
+              <a href="https://www.linkedin.com/school/m-s-ramaiah-insitute-of-management" target="_blank"><i class="fab fa-linkedin"></i><p>linkedin</p></a>
+            </div>
+          </div>
+        </div>
+        <div class="col2">
+          <img class="logo2" src="./assets/logos/ramaiah_logo1.png" alt="" srcset="">
+          <img class="logo2" src="./assets/logos/perceptionslogo.png" alt="" srcset="">
+        </div>
+    </footer>
+    <footer class="footer1">
+        <div class="copyright">
+          <p>Developed By <a href="http://webwizardtej.co.in">SURYA TEJA TANKALA</a> & Jayanth Dasari. &copy; copyrights reserved by <a href="http://startgenie.co.in">Start Genie</a></p>
+          <!-- <img
+            src="https://hitwebcounter.com/counter/counter.php?page=8262083&style=0010&nbdigits=5&type=page&initCount=0"
+            title="Free Counter" Alt="web counter" border="0" /> -->
+        </div>
+    </footer>
+</body>
+<script>
+    function validateForm(event) {
+        event.preventDefault();
+        let isValid = true;
+
+        // Reset errors
+        document.querySelectorAll('.error').forEach(error => {
+            error.style.display = 'none';
+        });
+
+        // Validate Name
+        const name = document.getElementById('name').value.trim();
+        if (!name) {
+            document.getElementById('nameError').style.display = 'block';
+            isValid = false;
+        }
+
+        // Validate Email
+        const email = document.getElementById('email').value.trim();
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!email || !emailRegex.test(email)) {
+            document.getElementById('emailError').style.display = 'block';
+            isValid = false;
+        }
+
+        // Validate Subject
+        const subject = document.getElementById('subject').value.trim();
+        if (!subject) {
+            document.getElementById('subjectError').style.display = 'block';
+            isValid = false;
+        }
+
+        // Validate Message
+        const message = document.getElementById('message').value.trim();
+        if (!message) {
+            document.getElementById('messageError').style.display = 'block';
+            isValid = false;
+        }
+
+        if (isValid) {
+            // Create mailto link
+            const mailtoLink = `mailto:perceptions@msrim.org?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`)}`;
+            
+            // Open default email client
+            window.location.href = mailtoLink;
+
+            // Show success message
+            document.getElementById('successMessage').style.display = 'block';
+            
+            // Reset form
+            document.getElementById('contactForm').reset();
+        }
+
+        return false;
+    }
+</script>
+</html>

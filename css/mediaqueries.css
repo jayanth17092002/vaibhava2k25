@@ -1,0 +1,366 @@
+/* media queries start */
+
+@media only screen and (max-width: 480px) and (min-width: 320px) {
+    .bg{
+        height: 700px;
+        /* width: 320px; */
+    }
+
+    .bg1{
+        height: auto;
+    }
+    .dropdown{
+        position: absolute;
+        height: 745px;
+    }
+    .logo-container img{
+        width: 70px;
+        height: 70px;
+    }
+    .start img{
+        width: 100px;
+        height: 40px;
+    }
+    .end img{
+        width: 90px;
+        height: 40px;
+    }
+    .main{
+        display: flex;
+        flex-direction: column;
+    }
+    .main-img img{
+        width: 310px;
+        height: 250px;
+        margin-bottom: 30px;
+    }
+    .main-content h2{
+        font-size: 17px;
+        padding-bottom: 10px;
+    }
+    
+    /* .main-content h1{
+        font-size: 30px;
+        color: yellow;
+        padding-bottom: 20px;
+    } */
+    
+    .main-content p{
+        font-size: 25px;
+    }
+
+    .fade{
+        font-size: 50px;
+    }
+    
+    .ad{
+        padding-top: 10px;
+    }
+    
+    .ad p{
+        padding-top: 5px;
+    }
+  
+    /* .scroll{
+        margin-bottom: 10px;
+    } */
+
+    .head-carou{
+        font-size: 35px;
+    }
+
+    .card{
+        align-items: center;
+    }
+
+    .card-button-container{
+        width: 100%;
+    }
+
+    .card img{
+        width: 250px;
+        height: 250px;
+    }
+
+    .view-more{
+        padding: 8px;
+        font-size: 15px;
+        width: 30%;
+    }
+
+    .prev-button {
+        left: 0;
+    }
+    
+    .next-button {
+        right: 0;
+    }
+  
+    .popup-container{
+        height: 100%;
+        /* overflow: auto; */
+    }
+
+    .popup-head h3{
+        font-size: 20px;
+    }
+
+    .tab-ov{
+        padding: 0px 25px;
+    }
+
+    .eveco h3{
+        font-size: 12px;
+        padding-bottom: 10px;
+    }
+
+    .eveco p{
+        font-size: 12px;
+    }
+
+    .tab-ov h3{
+        font-size: 12px;
+        padding-bottom: 10px;
+    }
+
+    .tab-ov p{
+        font-size: 12px;
+    }
+
+    .btn{
+        padding: 5px;
+    }
+
+    .btn a{
+        padding: 5px;
+        font-size: 15px;
+    }
+
+    .event-slider-wrapper h1{
+        font-size: 35px;
+    }
+  
+    .spon-img img{
+        width: 80px;
+        height: 80px;
+      }
+  
+    .front,.back{
+        font-size: 1.5rem;
+        min-height: 200px;
+        align-items: center;
+    }
+  
+    .front .inner p{
+        font-size: 20px;
+    }
+  
+    .spon img{
+        padding: 10px;
+        margin: 30px 20px;
+    }
+  
+    /* .section-p1 {
+        padding: 40px 60px;
+    } */
+    
+    .col1{
+        padding: 10px 0;
+    }
+  
+    .footer {
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+  
+  }
+  
+  @media only screen and (max-width: 768px) and (min-width: 481px){
+    .bg{
+        height: 700px;
+    }
+    .bg1{
+        height: auto;
+    }
+    .start img{
+        width: 130px;
+        height: 50px;
+    }
+    .end img{
+        width: 110px;
+        height: 50px;
+    }
+    #name-display{
+        font-size: 60px;
+        height: 100px;
+        width: 400px;
+        padding: 0;
+    }
+    .main{
+        display: flex;
+        flex-direction: column;
+        padding: 0;
+    }
+    .main-img img{
+        width: 350px;
+        height: 300px;
+    }
+    .main-content{
+        padding-bottom: 10px;
+    }
+    .main-content h2{
+        font-size: 35px;
+        padding-bottom: 0;
+    }
+    .main-content h1{
+        font-size: 40px;
+        padding-bottom: 20px;
+    }
+    .main-content p{
+        font-size: 25px;
+    }
+    .scroll{
+        padding: 0;
+    }
+    .text-slider-wrapper{
+        height: 300px;
+    }
+    .prev-button {
+        left: 10px;
+    }
+    
+    .next-button {
+        right: 10px;
+    }
+    .ad{
+        padding-top: 10px;
+    }
+    
+    .ad p{
+        padding-top: 5px;
+    }
+  
+    .blank{
+        padding: 100px 20px;
+    }
+  
+    .dept{
+        padding: 20px 10px;
+    }
+  
+    .dept h1{
+        font-size: 2rem;
+        margin: 0;
+    }
+  
+    .popup-container{
+        height: 250%;
+        overflow: auto;
+    }
+  
+    .popup-content{
+        height: 250%;
+    }
+    .tab-contents .tab1{
+        flex-direction: column;
+    }
+    .tab-links{
+        margin-left: 5px;
+    }
+  
+    .tab-ov{
+        padding-top: 0px;
+        padding-left: 5px;
+        padding-right: 5px;
+        font-size: 10px;
+    }
+  
+    .front .inner p{
+        font-size: 20px;
+    }
+  
+    .front, .back{
+        font-size: 1.25rem;
+    }
+  
+    .spon img{
+        padding: 10px;
+        margin: 30px 20px;
+    }
+  
+    .section-p1 {
+        padding: 40px 60px;
+    }
+  
+    .col1{
+        padding: 0 30px;
+    }
+  
+    .col1 img{
+        width: 150px;
+        height: 150px;
+      }
+  
+  }
+  
+  @media only screen and (max-width: 1024px) and (min-width: 769px) {
+  
+    .link-container li a{
+        font-size: 18px;
+    }
+  
+    .main{
+        display: flex;
+        flex-direction: row;
+    }
+    .main-img{
+        width: 550px;
+        height: 375px;
+        margin-bottom: 120px;
+    }
+    .main-content h2{
+        font-size: 40px;
+        padding-bottom: 10px;
+    }
+    
+    .main-content h1{
+        font-size: 42.5px;
+        padding-bottom: 20px;
+    }
+    
+    .main-content p{
+        font-size: 22px;
+    }
+
+    #name-display{
+        font-size: 80px;
+        width: 500px;
+    }
+  
+    .blank{
+        padding: 100px 35px;
+    }
+  
+    .front .inner p{
+        font-size: 20px;
+    }
+  
+    .front, .back{
+        font-size: 1.2rem;
+    }
+  
+    .dept{
+        max-width: 200rem;
+        max-height: 160rem;
+        padding: 20px 0;
+    }
+  
+    .section-p1 {
+        padding: 40px 40px;
+    }
+  
+  }
+  
+  /* media queries end */
