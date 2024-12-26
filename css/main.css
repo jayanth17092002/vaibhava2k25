@@ -38,14 +38,27 @@ p{
 .bg {
     /* background-repeat: no-repeat; */
     background-image: url('../assets/images/bg.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     overflow: hidden;
-    background-attachment: fixed;   
+    min-height: 100vh;  
 }
 
 .bg1{
   background-image: url('../assets/images/bg1.png');
-  overflow: hidden;
-  background-attachment: fixed;
+  background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    overflow: hidden;
+    min-height: 100vh;
+}
+
+@supports (-webkit-touch-callout: none) {
+  .bg, .bg1 {
+      background-attachment: scroll;
+      /* Ensures proper scrolling behavior on iOS */
+  }
 }
 
 /* parallax end */

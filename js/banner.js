@@ -1,7 +1,6 @@
 const ads = [
     {
-        image: './assets/event_logos/10.png',
-        link: 'https://example1.com'
+        image: './assets/images/banner-popup1.png',
     },
     // {
     //     image: 'ad2.jpg',
